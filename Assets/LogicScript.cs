@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -15,10 +16,15 @@ public class LogicScript : MonoBehaviour
     public AudioSource dingSFX;
     public AudioSource gameOverSFX;
 
+    // TMP
+    public TMP_Text tmpScoreText;
+    public TMP_Text tmpHighScoreText;
+
     private void Start()
     {
         highScore = PlayerPrefs.GetInt("highScore",0);
-        scoreTextHigh.text = highScore.ToString();
+        // scoreTextHigh.text = highScore.ToString();
+        tmpHighScoreText.text = "HighScore: " + highScore.ToString() ;
     }
 
     [ContextMenu("Wipe PlayerPrefs")]
@@ -34,7 +40,8 @@ public class LogicScript : MonoBehaviour
         if (gameOverScreen.activeSelf == false)
         {
             playerScore += scoreToAdd;
-            scoreText.text = playerScore.ToString();
+            // scoreText.text = playerScore.ToString();
+            tmpScoreText.text = "Score: " + playerScore.ToString() ;
             dingSFX.Play();
         }
     }
