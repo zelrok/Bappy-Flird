@@ -17,13 +17,15 @@ public class LogicScript : MonoBehaviour
 
     private void Start()
     {
-        if ( PlayerPrefs.HasKey("highScore") ){
-            highScore = PlayerPrefs.GetInt("highScore");
-        } else
-        {
-            highScore = 0;
-        }
+        highScore = PlayerPrefs.GetInt("highScore",0);
         scoreTextHigh.text = highScore.ToString();
+    }
+
+    [ContextMenu("Wipe PlayerPrefs")]
+    public void wipePrefs()
+    {
+        // Removes all keys and values from the preferences. Use with caution.
+        PlayerPrefs.DeleteAll();
     }
 
     [ContextMenu("Increase Score")]
